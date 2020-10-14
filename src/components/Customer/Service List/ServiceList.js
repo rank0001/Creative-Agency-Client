@@ -20,6 +20,7 @@ import pic1 from "../../../customerPic/customer-1.png";
 import pic2 from "../../../customerPic/customer-2.png";
 import pic3 from "../../../customerPic/customer-3.png";
 import ServiceDataLoad from "./ServiceDataLoad";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
 	gridRoot: {
@@ -27,15 +28,12 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function ServiceList() {
+const  ServiceList = ({user})=> {
 	const classes = useStyles();
-
-	
-
 	const [serviceState, setService] = React.useState([]);
 
 	React.useEffect(() => {
-		fetch("http://localhost:5000/users")
+		fetch("http://localhost:5000/user?email=" + user.email)
 			.then((response) => response.json())
 			.then((data) => {
 				setService(data);
@@ -65,3 +63,8 @@ export default function ServiceList() {
 		</div>
 	);
 }
+
+const mapStateToProps = (state) => {
+	return { user: state.user };
+};
+export default connect(mapStateToProps)(ServiceList);

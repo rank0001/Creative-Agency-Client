@@ -38,7 +38,7 @@ export default function Service() {
 			.then((response) => response.json())
 			.then((data) => {
 				setService(data);
-				console.log(data);
+		
 			});
 	}, []);
 
@@ -52,7 +52,7 @@ export default function Service() {
 					justify="center"
 					alignItems="center"
 				>
-					<Grid item lg md sm xs={12}>
+					<Grid item lg={12} md={12} sm={12} xs={12}>
 						
 							<LoadService data={serviceState} />
 					

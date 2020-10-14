@@ -35,24 +35,32 @@ function createData(name, calories, fat, carbs, protein) {
 export default function LoadService({ data }) {
 	const classes = useStyles();
 
-	const [age, setAge] = React.useState("done");
+	const [age, setAge] = React.useState(3);
 	//const [open, setOpen] = React.useState(false);
 
-	const handleChange = (event) => {
-        console.log('babar');
-		console.log(event);
-		//console.log(data);
-		//console.log(age, data.status);
-		//setAge(event.target.value);
+	const handleChange = (data,event) => {
+        //console.log('babar');
+		console.log(data);
+        const newStatus = event.target.value; 
+        const value = {
+            status:newStatus
+        }
+        
+        	const requestOptions = {
+				method: "PATCH",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(value),
+			};
+			fetch(`http://localhost:5000/updateStatus/${data._id}`, requestOptions).then(
+				(response) => {
+					
+					setAge(Math.random()*3);
+				}
+			);
+		
 	};
 
-	// const handleClose = () => {
-	// 	setOpen(false);
-	// };
-
-	// const handleOpen = () => {
-	// 	setOpen(true);
-	// };
+	
 
 	return (
 		<TableContainer component={Paper}>
@@ -75,16 +83,17 @@ export default function LoadService({ data }) {
 							<TableCell align="right">{data.email}</TableCell>
 							<TableCell align="right">{data.service}</TableCell>
 							<TableCell align="right">{data.details}</TableCell>
-							<TableCell align="right" onChange={handleChange}>
-								<FormControl variant="outlined" className={classes.formControl}>
-									<InputLabel id="demo-simple-select-outlined-label">
+							<TableCell align="right" >
+								<FormControl  className={classes.formControl} >
+									<InputLabel id="demo-simple-select-label">
 										Status
 									</InputLabel>
 									<Select
-										labelId="demo-simple-select-outlined-label"
-										id="demo-simple-select-outlined"
-										value={age}
+										labelId="demo-simple-select-label"
+										id="demo-simple-select"
+										value={data.status}
 										label="Status"
+                                        onChange={(e)=>handleChange(data,e)}
 									>
 										<MenuItem value="">
 											<em>None</em>

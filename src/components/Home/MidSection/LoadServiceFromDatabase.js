@@ -12,13 +12,13 @@ const useStyles = makeStyles((theme) => ({
 		width: "300px",
 		cursor: "pointer",
 	},
-	animation:{
-		'&:hover': {
-       	background: "whitesmoke",
-		transform:'scale(1.3)',
-	
-    	},
-	}
+	animation: {
+		"&:hover": {
+			background: "whitesmoke",
+			transform: "scale(1.3)",
+			transition: "all .2s ease-in-out",
+		},
+	},
 }));
 
 //const color = ["#FBC02D", "#E64A19", "#009688", "#303F9F"];
@@ -45,9 +45,15 @@ const LoadServiceFromDatabase = ({ data, user }) => {
 
 	const classes = useStyles();
 	return (
-		<Grid item xs={4} sm={4} align="center" 
-			className={classes.animation} 
-        	onClick={() => handleEventClick(data)} style={{cursor:'pointer'}}>
+		<Grid
+			item
+			xs={4}
+			sm={4}
+			align="center"
+			className={classes.animation}
+			onClick={() => handleEventClick(data)}
+			style={{ cursor: "pointer" }}
+		>
 			<img
 				src={require(`../../../icons/${data.img}`)}
 				style={{ width: "74px", height: "74px" }}
