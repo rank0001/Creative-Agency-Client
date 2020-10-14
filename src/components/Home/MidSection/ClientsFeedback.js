@@ -19,26 +19,36 @@ import { Grid } from "@material-ui/core";
 import pic1 from "../../../customerPic/customer-1.png";
 import pic2 from "../../../customerPic/customer-2.png";
 import pic3 from "../../../customerPic/customer-3.png";
+import LoadClientFeedback from "./LoadClientFeedback";
 
 const useStyles = makeStyles((theme) => ({
-	root: {
-		maxWidth: 345,
-	},
+	
 
 	gridRoot: {
 		flexGrow: 1,
 	},
-	media: {
-		height: 0,
-		paddingTop: "56.25%", // 16:9
-	},
+	
 }));
 
 export default function ClientsFeedback() {
 	const classes = useStyles();
 
+
+const [feedbackState, setFeedback] = React.useState([]);
+
+	React.useEffect(() => {
+		fetch("http://localhost:5000/feedback")
+			.then((response) => response.json())
+			.then((data) => {
+				setFeedback(data);
+			});
+	}, []);
+
+
+
+
 	return (
-		<div style={{ marginTop: "50px" }}>
+		<div style={{ marginTop: "50px" }} className={classes.gridRoot}>
 			<Typography variant="h4" align="center">
 				Clients Feedback
 			</Typography>
@@ -48,80 +58,11 @@ export default function ClientsFeedback() {
 				direction="row"
 				justify="center"
 				alignItems="center"
+				
 			>
-				<Grid item xs={4} sm={4} lg={4} md={4}>
-					<Card className={classes.root}>
-						<CardHeader
-							avatar={
-								<Avatar
-									aria-label="recipe"
-									className={classes.avatar}
-									src={pic1}
-								></Avatar>
-							}
-							title="Shrimp and Chorizo Paella"
-							subheader="September 14, 2016"
-						/>
-
-						<CardContent>
-							<Typography variant="body2" color="textSecondary" component="p">
-								This impressive paella is a perfect party dish and a fun meal to
-								cook together with your guests. Add 1 cup of frozen peas along
-								with the mussels, if you like.
-							</Typography>
-						</CardContent>
-					</Card>
-				</Grid>
-				<Grid item xs={4} sm={4} lg={4} md={4}>
-					<Card className={classes.root}>
-						<CardHeader
-							avatar={
-								<Avatar
-									aria-label="recipe"
-									className={classes.avatar}
-									src={pic2}
-								>
-									R
-								</Avatar>
-							}
-							title="Shrimp and Chorizo Paella"
-							subheader="September 14, 2016"
-						/>
-
-						<CardContent>
-							<Typography variant="body2" color="textSecondary" component="p">
-								This impressive paella is a perfect party dish and a fun meal to
-								cook together with your guests. Add 1 cup of frozen peas along
-								with the mussels, if you like.
-							</Typography>
-						</CardContent>
-					</Card>
-				</Grid>
-				<Grid item xs={4} sm={4} lg={4} md={4}>
-					<Card className={classes.root}>
-						<CardHeader
-							avatar={
-								<Avatar
-									aria-label="recipe"
-									className={classes.avatar}
-									src={pic3}
-								>
-									R
-								</Avatar>
-							}
-							title="Shrimp and Chorizo Paella"
-							subheader="September 14, 2016"
-						/>
-
-						<CardContent>
-							<Typography variant="body2" color="textSecondary" component="p">
-								This impressive paella is a perfect party dish and a fun meal to
-								cook together with your guests. Add 1 cup of frozen peas along
-								with the mussels, if you like.
-							</Typography>
-						</CardContent>
-					</Card>
-				</Grid>
+					{feedbackState.map((feedback) => (
+					<LoadClientFeedback data={feedback} />
+				))}
 			</Grid>
 		</div>
 	);

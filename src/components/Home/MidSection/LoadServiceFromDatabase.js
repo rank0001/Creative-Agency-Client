@@ -38,7 +38,8 @@ const LoadServiceFromDatabase = ({ data, user }) => {
 
 	const classes = useStyles();
 	return (
-		<Grid item xs={4} sm={4} align="center">
+		<Grid item xs={4} sm={4} align="center" 
+        	onClick={() => handleEventClick(data)} style={{cursor:'pointer'}}>
 			<img
 				src={require(`../../../icons/${data.img}`)}
 				style={{ width: "74px", height: "74px" }}
