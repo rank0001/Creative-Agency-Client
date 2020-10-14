@@ -28,6 +28,7 @@ const Login = (props) => {
 	let data = null;
 	if (props.location.state) {
 		data = props.location.state.data;
+		console.log(data);
 	}
 
 	const history = useHistory();
@@ -50,11 +51,11 @@ const Login = (props) => {
 				};
 				props.userInfo(signedInUser);
 				const location = {
-					pathname: "/register",
+					pathname: "/customer/order",
 					state: { data },
 				};
-				//	if (props.location.state) history.push(location);
-				//else history.push("/customer/order");
+				if (props.location.state) history.push(location);
+				else history.push("/customer/order");
 			})
 			.catch(function (err) {
 				const error = err.message;

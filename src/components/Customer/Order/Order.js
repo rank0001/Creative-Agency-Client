@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "@material-ui/core/Link";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-
+import { connect } from "react-redux";
+import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import { Typography, Button, TextField } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -18,28 +18,99 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function Order() {
+const Order = ({ location, user }) => {
+	const history = useHistory();
+	const [userInfo, setUser] = useState({
+		name: user.name,
+		email: user.email,
+		service: "",
+		details: "",
+		price: "",
+		status: "done",
+		img: "service4.png",
+	});
+
+	const [message, setMessage] = React.useState({
+		error: "",
+		success: "",
+	});
+
 	const classes = useStyles();
+
+	let title = "";
+
+	if (location.state) {
+		title = location.state.data.title;
+		if (userInfo.service == "") {
+			const newUserInfo = { ...userInfo };
+			newUserInfo.service = title;
+			setUser(newUserInfo);
+		}
+	}
+
+	const handleBlur = (e) => {
+		setMessage({ error: "", success: "" });
+		const newUserInfo = { ...userInfo };
+		newUserInfo[e.target.name] = e.target.value;
+		setUser(newUserInfo);
+	};
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+
+		if (
+			userInfo.name &&
+			userInfo.email &&
+			userInfo.service &&
+			userInfo.details &&
+			userInfo.price
+		) {
+			const newMessage = { ...message };
+
+			const requestOptions = {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(userInfo),
+			};
+			fetch("http://localhost:5000/users", requestOptions).then((response) => {
+				newMessage.success = "successfully submitted";
+				setMessage(newMessage);
+				history.push("/customer/service");
+			});
+		} else {
+			const newMessage = { ...message };
+			newMessage.error = "You must fill all the credentials";
+			setMessage(newMessage);
+		}
+	};
+
 	return (
 		<div>
-
 			<form
 				className={classes.root}
 				noValidate
 				autoComplete="off"
-				onSubmit={(e) => e.preventDefault()}
+				onSubmit={handleSubmit}
 			>
 				<TextField
 					id="outlined-basic"
-					label="Outlined"
+					label="Name"
 					variant="outlined"
+					name="name"
+					value={user.name}
+					onBlur={handleBlur}
+					placeholder="enter your name"
 					style={{ background: "white" }}
 				/>
 				<br />
 				<br />
 				<TextField
 					id="outlined-basic"
-					label="Outlined"
+					label="Email"
+					name="email"
+					value={user.email}
+					onBlur={handleBlur}
+					placeholder="enter email"
 					variant="outlined"
 					style={{ background: "white" }}
 				/>
@@ -49,7 +120,9 @@ export default function Order() {
 
 				<TextField
 					id="outlined-basic"
-					label="Outlined"
+					label="Service"
+					name="service"
+					onBlur={handleBlur}
 					variant="outlined"
 					style={{ background: "white" }}
 				/>
@@ -59,7 +132,10 @@ export default function Order() {
 				<TextField
 					style={{ background: "white" }}
 					id="outlined-multiline-static"
-					label="Multiline"
+					label="Details"
+					name="details"
+					placeholder="enter project details"
+					onBlur={handleBlur}
 					multiline
 					rows={4}
 					variant="outlined"
@@ -69,40 +145,32 @@ export default function Order() {
 
 				<TextField
 					id="outlined-basic"
-					label="Outlined"
+					label="Price"
+					name="price"
+					onBlur={handleBlur}
+					placeholder="enter price"
 					variant="outlined"
 					style={{ background: "white", width: "284px", marginTop: "50px" }}
 				/>
-				<input
-					accept="image/*"
-					className={classes.input}
-					style={{ display: "none" }}
-					id="raised-button-file"
-					multiple
-					type="file"
-
-				/>
-				<label htmlFor="raised-button-file">
-					<Button variant="raised" component="span"  style={{
-						background: '#DEFFED',
-						color: "green",
-						width: "284px",
-						marginTop: "50px",
-                        height:'50px'
-					}}
-                    startIcon={<CloudUploadIcon/>}
-                    >
-						Upload Project File
-					</Button>
-				</label>
-                <br/>
-                <Button
-						style={{ background: "black", color: "white",width:'284px'}}
-						variant="contained"
-					>
-						Send
-					</Button>
+				<Button
+					style={{ background: "black", color: "white", width: "284px" }}
+					variant="contained"
+					type="submit"
+				>
+					Send
+				</Button>
 			</form>
+			<Typography style={{ color: "red" }} variant="h6" align="center">
+				{message.error}
+			</Typography>
+
+			<Typography style={{ color: "green" }} variant="h6" align="center">
+				{message.success}
+			</Typography>
 		</div>
 	);
-}
+};
+const mapStateToProps = (state) => {
+	return { user: state.user };
+};
+export default connect(mapStateToProps)(Order);

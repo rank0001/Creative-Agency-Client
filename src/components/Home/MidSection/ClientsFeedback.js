@@ -60,8 +60,8 @@ const [feedbackState, setFeedback] = React.useState([]);
 				alignItems="center"
 				
 			>
-					{feedbackState.map((feedback) => (
-					<LoadClientFeedback data={feedback} />
+					{feedbackState.map((feedback,index) => (
+					<LoadClientFeedback data={feedback} key={index}/>
 				))}
 			</Grid>
 		</div>

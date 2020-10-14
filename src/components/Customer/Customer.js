@@ -5,9 +5,9 @@ import Review from "./Review/Review";
 import Sidebar from "./Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-
 import { Typography, Button } from "@material-ui/core";
 import ServiceList from "./Service List/ServiceList";
+import Home from "../Home/Home";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -55,10 +55,11 @@ export default function Customer() {
 						>
 
                         <Typography>Logged in as blab </Typography>
-							<div style={{background:'whitesmoke'}}>
+							<div style={{}}>
 								<Route path="/customer/order" component={Order} />
 								<Route path="/customer/review" component={Review} />
 								<Route path="/customer/service" component={ServiceList} />
+                                
 							</div>
 						</Grid>
 					</Switch>
