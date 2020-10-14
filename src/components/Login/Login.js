@@ -21,6 +21,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Login = (props) => {
+	//console.log(props.user);
+	const [admin, setAdmin] = React.useState([]);
+
+	React.useEffect(() => {
+		fetch("http://localhost:5000/admin")
+			.then((response) => response.json())
+			.then((data) => {
+				//console.log(data);
+				setAdmin(data);
+			});
+	}, []);
+
 	const classes = useStyles();
 	const [errorMessage, setMessage] = React.useState({
 		error: "",
@@ -54,7 +66,14 @@ const Login = (props) => {
 					pathname: "/customer/order",
 					state: { data },
 				};
-				if (props.location.state) history.push(location);
+
+				let obj = admin.some((admin) => {
+					//console.log(admin.email,result.user.email)
+					return admin.email == result.user.email;
+				});
+				//console.log(obj);
+				if (obj) history.push("/admin/service");
+				else if (props.location.state) history.push(location);
 				else history.push("/customer/order");
 			})
 			.catch(function (err) {
@@ -79,7 +98,7 @@ const Login = (props) => {
 					marginTop: "40px",
 				}}
 			/>
-			
+
 			<div
 				style={{ textAlign: "center", marginTop: "40px" }}
 				className={classes.root}
@@ -112,8 +131,7 @@ const Login = (props) => {
 					>
 						Continue With Google
 					</Button>
-					<Typography variant="h6" align="center"
-                    style={{ marginTop: "50px" }}>
+					<Typography variant="h6" align="center" style={{ marginTop: "50px" }}>
 						Don't have an account?{" "}
 						<Link
 							onClick={handleSignInWithGoogle}

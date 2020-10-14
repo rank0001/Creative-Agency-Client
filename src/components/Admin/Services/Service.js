@@ -19,7 +19,8 @@ import { Grid } from "@material-ui/core";
 import pic1 from "../../../customerPic/customer-1.png";
 import pic2 from "../../../customerPic/customer-2.png";
 import pic3 from "../../../customerPic/customer-3.png";
-import ServiceDataLoad from "./ServiceDataLoad";
+//import ServiceDataLoad from "./ServiceDataLoad";
+import LoadService from "./LoadService";
 
 const useStyles = makeStyles((theme) => ({
 	gridRoot: {
@@ -27,10 +28,8 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function ServiceList() {
+export default function Service() {
 	const classes = useStyles();
-
-	
 
 	const [serviceState, setService] = React.useState([]);
 
@@ -45,23 +44,23 @@ export default function ServiceList() {
 
 	return (
 		<div style={{ marginTop: "50px" }} className={classes.gridRoot}>
-			{serviceState.length?(
-			<Grid
-				container
-				spacing={1}
-				direction="row"
-				justify="center"
-				alignItems="center"
-			>
-				{serviceState.map((service, index) => (
-					<ServiceDataLoad data={service} key={index} />
-				))}
-			</Grid>
-			):( 
-        <Typography variant="h6">
-          You need to add items
-        </Typography>
-      )}
+			{serviceState.length ? (
+				<Grid
+					container
+					spacing={1}
+					direction="row"
+					justify="center"
+					alignItems="center"
+				>
+					<Grid item lg md sm xs={12}>
+						
+							<LoadService data={serviceState} />
+					
+					</Grid>
+				</Grid>
+			) : (
+				<Typography variant="h6">You need to add items</Typography>
+			)}
 		</div>
 	);
 }
