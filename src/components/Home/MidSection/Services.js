@@ -4,14 +4,32 @@ import { Typography, Grid } from "@material-ui/core";
 import service1 from "../../../icons/service1.png";
 import service2 from "../../../icons/service2.png";
 import service3 from "../../../icons/service3.png";
+import LinearProgress from "@material-ui/core/LinearProgress";
+import LoadServiceFromDatabase from "./LoadServiceFromDatabase";
 const useStyles = makeStyles((theme) => ({
 	root: {
 		flexGrow: 1,
+	},
+	loader: {
+		width: "100%",
+		"& > * + *": {
+			marginTop: theme.spacing(2),
+		},
 	},
 }));
 
 export default function Services() {
 	const classes = useStyles();
+
+	const [serviceState, setService] = React.useState([]);
+
+	React.useEffect(() => {
+		fetch("http://localhost:5000/")
+			.then((response) => response.json())
+			.then((data) => {
+				setService(data);
+			});
+	}, []);
 
 	return (
 		<div className={classes.root} style={{ marginTop: "20px" }}>
@@ -25,41 +43,9 @@ export default function Services() {
 				justify="center"
 				alignItems="center"
 			>
-				<Grid item xs={4} sm={4} align="center">
-					<img src={service1} style={{ width: "74px", height: "74px" }} />
-					<Typography variant="h5">Web & Mobile Design</Typography>
-					<Typography variant="h6">
-						{" "}
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
-						perspiciatis totam quibusdam eos culpa ipsum eius tempora nobis
-						incidunt, aut eum quam quisquam? Corporis quaerat ipsa illo vero,
-						voluptates harum?
-					</Typography>
-				</Grid>
-
-				<Grid item xs={4} sm={4} align="center">
-					<img src={service2} style={{ width: "74px", height: "74px" }} />
-					<Typography variant="h5">Web & Mobile Design</Typography>
-					<Typography variant="h6">
-						{" "}
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
-						perspiciatis totam quibusdam eos culpa ipsum eius tempora nobis
-						incidunt, aut eum quam quisquam? Corporis quaerat ipsa illo vero,
-						voluptates harum?
-					</Typography>
-				</Grid>
-
-				<Grid item xs={4} sm={4} align="center">
-					<img src={service3} style={{ width: "74px", height: "74px" }} />
-					<Typography variant="h5">Web & Mobile Design</Typography>
-					<Typography variant="h6">
-						{" "}
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
-						perspiciatis totam quibusdam eos culpa ipsum eius tempora nobis
-						incidunt, aut eum quam quisquam? Corporis quaerat ipsa illo vero,
-						voluptates harum?
-					</Typography>
-				</Grid>
+				{serviceState.map((service) => (
+					<LoadServiceFromDatabase data={service} />
+				))}
 			</Grid>
 		</div>
 	);

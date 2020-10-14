@@ -2,7 +2,8 @@ const userState = {
 	user: {
 		isSignedIn: false,
 		name:'',
-		email:''
+		email:'',
+        photo:''
 	},
 };
 

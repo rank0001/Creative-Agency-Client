@@ -4,16 +4,17 @@ import { userInfo } from "../../actions";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import firebase from "../../configs/FirebaseConfig";
-import { Typography, Paper } from "@material-ui/core";
+import { Typography, Paper, Link } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import googleLogo from "../../logos/google1.png";
 import logo from "../../logos/logo.png";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
 		"& > *": {
 			margin: "auto",
-			width: theme.spacing(100),
-			height: theme.spacing(50),
+			width: "570px",
+			height: "457px",
 			background: "whitesmoke",
 		},
 	},
@@ -36,12 +37,15 @@ const Login = (props) => {
 			.auth()
 			.signInWithPopup(provider)
 			.then((result) => {
+				console.log(result, result.user.photoURL);
 				const { displayName } = result.user;
+				const { photoURL } = result.user;
 				const signedInUser = {
 					user: {
 						isSignedIn: true,
 						name: displayName,
 						email: result.user.email,
+						photo: photoURL,
 					},
 				};
 				props.userInfo(signedInUser);
@@ -49,8 +53,8 @@ const Login = (props) => {
 					pathname: "/register",
 					state: { data },
 				};
-				if (props.location.state) history.push(location);
-				else history.push("/register");
+				//	if (props.location.state) history.push(location);
+				//else history.push("/customer/order");
 			})
 			.catch(function (err) {
 				const error = err.message;
@@ -71,25 +75,52 @@ const Login = (props) => {
 					maxWidth: "100%",
 					maxHeight: "100%",
 					height: "80px",
+					marginTop: "40px",
 				}}
 			/>
+			
 			<div
 				style={{ textAlign: "center", marginTop: "40px" }}
 				className={classes.root}
 			>
 				<Paper variant="outlined">
-					<Typography variant="h5" style={{ marginTop: "100px" }}>
+					<Typography variant="h5" style={{ marginTop: "150px" }}>
 						Login
 					</Typography>
 
 					<Button
-						style={{ borderRadius: "15px", width: "80%", marginTop: "10px" }}
+						style={{
+							background: "#FFFFFF",
+							border: "1px solid #C7C7C7",
+							boxSizing: "border-box",
+							borderRadius: "57px",
+							marginTop: "10px",
+							width: "461px",
+							height: "58.93px",
+						}}
+						startIcon={
+							<img
+								src={googleLogo}
+								alt=""
+								style={{ width: "31.27px", height: "36.67px" }}
+							></img>
+						}
 						variant="contained"
-						color="primary"
+						color="black"
 						onClick={handleSignInWithGoogle}
 					>
 						Continue With Google
 					</Button>
+					<Typography variant="h6" align="center"
+                    style={{ marginTop: "50px" }}>
+						Don't have an account?{" "}
+						<Link
+							onClick={handleSignInWithGoogle}
+							style={{ cursor: "pointer" }}
+						>
+							Create an Account
+						</Link>
+					</Typography>
 					<Typography variant="h6" style={{ marginTop: "100px" }}>
 						{errorMessage.error}
 					</Typography>
