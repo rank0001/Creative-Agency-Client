@@ -12,6 +12,12 @@ const useStyles = makeStyles((theme) => ({
 	root: {
 		flexGrow: 1,
 	},
+	link:{
+		marginLeft:'30px',
+		lineHeight:'40px',
+		marginTop:'10px'
+
+	}
 }));
 
 
@@ -20,12 +26,12 @@ export default function Sidebar() {
     const history = useHistory();
     return (
         <div>
-       <img src={logo} alt="" style={{width:'150px',height:'47px'}}/>
+       <img src={logo} alt="" style={{width:'150px',height:'47px',marginTop:'20px',marginLeft:'20px'}}/>
        <br/>
 					<Link
 						component="button"
 						variant="body2"
-						className="link"
+						className={classes.link}
                         onClick={()=>history.push("/customer/order")}
 					>
 						Order
@@ -35,7 +41,7 @@ export default function Sidebar() {
 						component="button"
 						variant="body2"
 						 onClick={()=>history.push("/customer/service")}
-						className="link"
+						className={classes.link}
 					>
 						Service List
 					</Link>
@@ -44,7 +50,7 @@ export default function Sidebar() {
 						component="button"
 						variant="body2"
 						 onClick={()=>history.push("/customer/review")}
-						className="link"
+						className={classes.link}
 					>
 						Review
 					</Link>

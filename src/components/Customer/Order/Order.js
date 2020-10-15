@@ -16,6 +16,11 @@ const useStyles = makeStyles((theme) => ({
 			height: "60px",
 		},
 	},
+	links: {
+		[theme.breakpoints.down("sm")]: {
+			width:'350px'
+		},
+	},
 }));
 
 const Order = ({ location, user }) => {
@@ -97,10 +102,11 @@ const Order = ({ location, user }) => {
 					label="Name"
 					variant="outlined"
 					name="name"
+					className={classes.links}
 					value={user.name}
 					onBlur={handleBlur}
 					placeholder="enter your name"
-					style={{ background: "white" }}
+					style={{ background: "whitesmoke" }}
 				/>
 				<br />
 				<br />
@@ -112,7 +118,8 @@ const Order = ({ location, user }) => {
 					onBlur={handleBlur}
 					placeholder="enter email"
 					variant="outlined"
-					style={{ background: "white" }}
+					className={classes.links}
+					style={{  background: "whitesmoke" }}
 				/>
 
 				<br />
@@ -124,7 +131,8 @@ const Order = ({ location, user }) => {
 					name="service"
 					onBlur={handleBlur}
 					variant="outlined"
-					style={{ background: "white" }}
+					className={classes.links}
+					style={{ background: "whitesmoke" }}
 				/>
 
 				<br />
@@ -138,6 +146,7 @@ const Order = ({ location, user }) => {
 					onBlur={handleBlur}
 					multiline
 					rows={4}
+					className={classes.links}
 					variant="outlined"
 				/>
 				<br />
@@ -150,21 +159,28 @@ const Order = ({ location, user }) => {
 					onBlur={handleBlur}
 					placeholder="enter price"
 					variant="outlined"
-					style={{ background: "white", width: "284px", marginTop: "50px" }}
+					className={classes.links}
+					style={{ background: "whitesmoke", width: "284px", marginTop: "50px" }}
 				/>
+
 				<Button
-					style={{ background: "black", color: "white", width: "284px" }}
+					style={{
+						background: "black",
+						color: "white",
+						width: "284px",
+						marginTop: "50px",
+					}}
 					variant="contained"
 					type="submit"
 				>
 					Send
 				</Button>
 			</form>
-			<Typography style={{ color: "red" }} variant="h6" align="center">
+			<Typography style={{ color: "red" }} variant="h6" align="left">
 				{message.error}
 			</Typography>
 
-			<Typography style={{ color: "green" }} variant="h6" align="center">
+			<Typography style={{ color: "green" }} variant="h6" align="left">
 				{message.success}
 			</Typography>
 		</div>

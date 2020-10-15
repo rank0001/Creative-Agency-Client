@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import Link from "@material-ui/core/Link";
 import logo from "../../../logos/logo.png";
 import { useHistory } from "react-router-dom";
-import './Navbar.css';
+import "./Navbar.css";
 
 export default function Navbar() {
 	//const classes = useStyles();
@@ -21,7 +21,7 @@ export default function Navbar() {
 			<div className="collapse navbar-collapse" id="navbarNav">
 				<ul className="navbar-nav ml-auto">
 					<li className="nav-item active">
-						<a className="nav-link mr-5" href="/">
+						<a className="nav-link mr-5 " href="/">
 							Home <span className="sr-only">(current)</span>
 						</a>
 					</li>
@@ -42,21 +42,20 @@ export default function Navbar() {
 							Contact us
 						</a>
 					</li>
-
-					<Button
-						style={{
-							background: "black",
-							color: "white",
-							width: "134px",
-							height: "45px",
-						}}
-						variant="contained"
-						onClick={() => history.push("/login")}
-					>
-						Login
-					</Button>
 				</ul>
 			</div>
+			<Button
+				style={{
+					background: "black",
+					color: "white",
+					width: "134px",
+					height: "45px",
+				}}
+				variant="contained"
+				onClick={() => history.push("/login")}
+			>
+				Login
+			</Button>
 		</nav>
 	);
 }

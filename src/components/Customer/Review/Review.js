@@ -16,6 +16,11 @@ const useStyles = makeStyles((theme) => ({
 			height: "60px",
 		},
 	},
+	links: {
+		[theme.breakpoints.down("sm")]: {
+			width: "350px",
+		},
+	},
 }));
 
 export default function Review() {
@@ -24,7 +29,7 @@ export default function Review() {
 		name: "",
 		designation: "",
 		description: "",
-        img:'customer-2.png'
+		img: "customer-2.png",
 	});
 
 	const [message, setMessage] = useState({
@@ -33,8 +38,8 @@ export default function Review() {
 	});
 
 	const handleSubmit = (e) => {
-        //history.push('/');
-        console.log(userInfo);
+		//history.push('/');
+		console.log(userInfo);
 		e.preventDefault();
 		if (userInfo.name && userInfo.designation && userInfo.description) {
 			const newMessage = { ...message };
@@ -75,22 +80,24 @@ export default function Review() {
 				<TextField
 					id="outlined-basic"
 					label="name"
-                    name='name'
+					name="name"
 					placeholder="enter name"
 					variant="outlined"
 					style={{ background: "white" }}
 					onBlur={handleBlur}
+					className={classes.links}
 				/>
 				<br />
 				<br />
 				<TextField
 					id="outlined-basic"
 					label="Designation"
-                    name = 'designation'
+					name="designation"
 					placeholder="enter designation"
 					variant="outlined"
 					style={{ background: "white" }}
 					onBlur={handleBlur}
+					className={classes.links}
 				/>
 
 				<br />
@@ -99,10 +106,11 @@ export default function Review() {
 					style={{ background: "white" }}
 					id="outlined-multiline-static"
 					label="Description"
-                    name ='description'
+					name="description"
 					placeholder="give description"
 					multiline
 					rows={4}
+					className={classes.links}
 					variant="outlined"
 					onBlur={handleBlur}
 				/>
@@ -116,7 +124,7 @@ export default function Review() {
 						marginTop: "60px",
 					}}
 					variant="contained"
-                    type="submit"
+					type="submit"
 				>
 					Send
 				</Button>

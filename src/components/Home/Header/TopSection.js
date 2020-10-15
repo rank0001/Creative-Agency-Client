@@ -22,7 +22,7 @@ export default function TopSection() {
 				justify="center"
 				alignItems="center"
 			>
-				<Grid item xs={12} sm={5}>
+				<Grid item xs={9} sm={5}>
 					<Typography variant="h4" style={{fontSize:'48px',lineHeight:'60px',fontWeight:'700'}}>
 						Lets Grow Your <br /> Brand to the <br /> Next Level
 					</Typography>

@@ -5,9 +5,12 @@ import Review from "./Review/Review";
 import Sidebar from "./Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import { Typography, Button } from "@material-ui/core";
+import { Typography, Button, Avatar } from "@material-ui/core";
 import ServiceList from "./Service List/ServiceList";
 import Home from "../Home/Home";
+import test from '../../logos/logo.png';
+import { connect } from "react-redux";
+
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -15,26 +18,25 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function Customer() {
+const Customer = ({user}) =>  {
 	const classes = useStyles();
 	return (
-		<div>
+		<div >
 			<BrowserRouter>
 				<Grid
 					className={classes.root}
 					container
-					spacing={2}
 					style={{ marginTop: "10px" }}
 				>
 					<Grid
 						item
 						lg={2}
 						md={2}
-						sm
-						xs
+						sm={9}
+						xs={9}
 						style={{
 							marginLeft: "20px",
-							border: "1px solid black",
+						
 						}}
 					>
 						<Sidebar />
@@ -43,18 +45,21 @@ export default function Customer() {
 					<Switch>
 						<Grid
 							item
-							lg={8}
+							lg={9}
 							md={6}
 							sm={12}
 							xs={12}
+							justify='center'
 							style={{
 								marginLeft: "50px",
-								border: "2px solid red",
-								marginTop: "30px",
+								
+								marginTop: "20px",
 							}}
 						>
 
-                        <Typography>Logged in as blab </Typography>
+                        <Typography >
+						<Avatar style={{display:'inline-block',}}   src={user.photo}>	
+						</Avatar> Logged in as {user.name} </Typography>
 							<div style={{}}>
 								<Route path="/customer/order" component={Order} />
 								<Route path="/customer/review" component={Review} />
@@ -68,3 +73,7 @@ export default function Customer() {
 		</div>
 	);
 }
+const mapStateToProps = (state) => {
+	return { user: state.user };
+};
+export default connect(mapStateToProps)(Customer);

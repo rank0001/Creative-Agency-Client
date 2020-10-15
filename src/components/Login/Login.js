@@ -18,6 +18,19 @@ const useStyles = makeStyles((theme) => ({
 			background: "whitesmoke",
 		},
 	},
+	btn: {
+		width: "461px",
+		[theme.breakpoints.down("sm")]: {
+			width: "321px",
+			marginRight: "40px",
+		},
+	},
+	text: {
+		[theme.breakpoints.down("sm")]: {
+			//width:'321px',
+			marginRight: "80px",
+		},
+	},
 }));
 
 const Login = (props) => {
@@ -115,9 +128,10 @@ const Login = (props) => {
 							boxSizing: "border-box",
 							borderRadius: "57px",
 							marginTop: "10px",
-							width: "461px",
+
 							height: "58.93px",
 						}}
+						className={classes.btn}
 						startIcon={
 							<img
 								src={googleLogo}
@@ -131,11 +145,16 @@ const Login = (props) => {
 					>
 						Continue With Google
 					</Button>
-					<Typography variant="h6" align="center" style={{ marginTop: "50px" }}>
-						Don't have an account?{" "}
+					<Typography
+						className={classes.text}
+						variant="h6"
+						align="center"
+						style={{ marginTop: "20px" }}
+					>
+						Don't have an account?
 						<Link
 							onClick={handleSignInWithGoogle}
-							style={{ cursor: "pointer" }}
+							style={{ cursor: "pointer", color: "blue" }}
 						>
 							Create an Account
 						</Link>
