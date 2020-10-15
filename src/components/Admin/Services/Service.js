@@ -57,8 +57,9 @@ export default function Service() {
 					direction="row"
 					justify="center"
 					alignItems="center"
+                    
 				>
-					<Grid item lg={12} md={12} sm={12} xs={12}>
+					<Grid item lg={12} md={12} sm={9} xs={9} >
 						
 							<LoadService data={serviceState} click={stateUpdate} />
 					

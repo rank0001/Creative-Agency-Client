@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+//import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 
 import { Typography, Button, TextField } from "@material-ui/core";
 
@@ -12,8 +13,20 @@ const useStyles = makeStyles((theme) => ({
 	root: {
 		"& > *": {
 			margin: theme.spacing(1),
-			width: "570px",
+			width: "450px",
 			height: "60px",
+		},
+	},
+	links: {
+		[theme.breakpoints.down("sm")]: {
+			width: "350px",
+		},
+	},
+
+	btn: {
+		marginTop:'40px',
+		[theme.breakpoints.down("md")]: {
+			marginTop: "70px",
 		},
 	},
 }));
@@ -81,7 +94,26 @@ export default function AddService() {
 					variant="outlined"
 					style={{ background: "white" }}
 					onBlur={handleBlur}
+					className={classes.links}
 				/>
+				<input
+					accept="image/*"
+					className={classes.input}
+					style={{ display: "none" }}
+					id="raised-button-file"
+					multiple
+					type="file"
+				/>
+				<label htmlFor="raised-button-file">
+					<Button
+						variant="raised"
+						component="span"
+						style={{ background: "#DEFFED", height: "40px", color: "green" }}
+						startIcon={<CloudUploadIcon />}
+					>
+						Upload Image
+					</Button>
+				</label>
 
 				<br />
 				<br />
@@ -95,42 +127,29 @@ export default function AddService() {
 					rows={4}
 					variant="outlined"
 					onBlur={handleBlur}
+					className={classes.links}
 				/>
-        <br/>
-        
-				<input
-					accept="image/*"
-					className={classes.input}
-					style={{ display: "none", }}
-					id="raised-button-file"
-					multiple
-					type="file"
-				/>
-				<label htmlFor="raised-button-file">
-					<Button variant="raised" component="span" className={classes.button} style={{background:'black',marginTop:'70px',color:'white'}}>
-						Upload
-					</Button>
-				</label>
 
-				<br />
 				<Button
 					style={{
-						background: "black",
+						background: "green",
 						color: "white",
-						width: "284px",
-						marginTop: "60px",
+						width: "208px",
+						height: "37px",
+						
 					}}
+					className={classes.btn}
 					variant="contained"
 					type="submit"
 				>
-					Send
+					Submit
 				</Button>
 			</form>
-			<Typography style={{ color: "red" }} variant="h6" align="center">
+			<Typography style={{ color: "red" }} variant="h6" align="left">
 				{message.error}
 			</Typography>
 
-			<Typography style={{ color: "green" }} variant="h6" align="center">
+			<Typography style={{ color: "green" }} variant="h6" align="left">
 				{message.success}
 			</Typography>
 		</div>

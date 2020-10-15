@@ -12,10 +12,22 @@ const useStyles = makeStyles((theme) => ({
 	root: {
 		"& > *": {
 			margin: theme.spacing(1),
-			width: "570px",
-			height: "60px",
+			width: "450px",
+            
+		
 		},
 	},
+    links: {
+        
+		[theme.breakpoints.down("sm")]: {
+			width: "350px",
+		},
+	},
+    btn:{
+        [theme.breakpoints.down("xs")]: {
+            marginTop:'30px'
+		},
+    }
 }));
 
 export default function MakeAdmin() {
@@ -65,6 +77,7 @@ export default function MakeAdmin() {
 	const classes = useStyles();
 	return (
 		<div>
+        <Typography variant="h5" style={{fontWeight:'600',marginLeft:'10px'}}>Email</Typography>
 			<form
 				className={classes.root}
 				noValidate
@@ -77,27 +90,31 @@ export default function MakeAdmin() {
 					name="email"
 					placeholder="enter email"
 					variant="outlined"
-					style={{ background: "white" }}
+					style={{ background: "white" ,	height:'40px',}}
 					onBlur={handleBlur}
+                    className={classes.links}
 				/>
 				<Button
 					style={{
-						background: "black",
+						background: "green",
 						color: "white",
-						width: "284px",
+						width: "158px",
+                        height:'55px'
+                        
 						
 					}}
+                    className={classes.btn}
 					variant="contained"
 					type="submit"
 				>
-					Send
+					Submit
 				</Button>
 			</form>
-			<Typography style={{ color: "red" }} variant="h6" align="center">
+			<Typography style={{ color: "red" }} variant="h6" align="left">
 				{message.error}
 			</Typography>
 
-			<Typography style={{ color: "green" }} variant="h6" align="center">
+			<Typography style={{ color: "green" }} variant="h6" align="left">
 				{message.success}
 			</Typography>
 		</div>

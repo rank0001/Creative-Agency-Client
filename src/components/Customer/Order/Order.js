@@ -173,7 +173,7 @@ const Order = ({ location, user }) => {
 					variant="contained"
 					type="submit"
 				>
-					Send
+					Submit
 				</Button>
 			</form>
 			<Typography style={{ color: "red" }} variant="h6" align="left">

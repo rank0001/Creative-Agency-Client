@@ -1,17 +1,14 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-//import Order from "./Order/Order";
-//import Review from "./Review/Review";
-//import Sidebar from "./Sidebar/Sidebar";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import { Typography, Button } from "@material-ui/core";
+import { Typography, Button,Avatar} from "@material-ui/core";
 import Sidenav from "./SideNav/Sidenav";
 import Service from "./Services/Service";
 import MakeAdmin from "./Make Admin/MakeAdmin";
-import AddService from './Add Service/AddService';
-//import ServiceList from "./Service List/ServiceList";
-//import Home from "../Home/Home";
+import AddService from "./Add Service/AddService";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -19,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function Admin() {
+const Admin = ({ user }) => {
 	const classes = useStyles();
 	return (
 		<div>
@@ -34,36 +31,35 @@ export default function Admin() {
 						item
 						lg={2}
 						md={2}
-						sm
-						xs
+						sm={9}
+						xs={9}
+						
 						style={{
 							marginLeft: "20px",
-							border: "1px solid black",
 						}}
 					>
-						<Sidenav/>
+						<Sidenav />
 					</Grid>
 
 					<Switch>
 						<Grid
 							item
-							lg={8}
+							lg={9}
 							md={6}
 							sm={12}
 							xs={12}
 							style={{
 								marginLeft: "50px",
-								border: "2px solid red",
-								marginTop: "30px",
+								marginTop: "20px",
 							}}
 						>
-
-                        <Typography>Logged in as blab </Typography>
-							<div style={{}}>
+						 <Typography >
+						<Avatar style={{display:'inline-block',}}   src={user.photo}>	
+						</Avatar> Logged in as {user.name} </Typography>
+							<div >
 								<Route path="/admin/service" component={Service} />
 								<Route path="/admin/addAdmin" component={MakeAdmin} />
 								<Route path="/admin/addService" component={AddService} />
-                                
 							</div>
 						</Grid>
 					</Switch>
@@ -71,4 +67,8 @@ export default function Admin() {
 			</BrowserRouter>
 		</div>
 	);
-}
+};
+const mapStateToProps = (state) => {
+	return { user: state.user };
+};
+export default connect(mapStateToProps)(Admin);

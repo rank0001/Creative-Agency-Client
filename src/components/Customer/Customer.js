@@ -60,7 +60,7 @@ const Customer = ({user}) =>  {
                         <Typography >
 						<Avatar style={{display:'inline-block',}}   src={user.photo}>	
 						</Avatar> Logged in as {user.name} </Typography>
-							<div style={{}}>
+							<div >
 								<Route path="/customer/order" component={Order} />
 								<Route path="/customer/review" component={Review} />
 								<Route path="/customer/service" component={ServiceList} />
