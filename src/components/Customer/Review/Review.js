@@ -129,11 +129,11 @@ export default function Review() {
 					Send
 				</Button>
 			</form>
-			<Typography style={{ color: "red" }} variant="h6" align="center">
+			<Typography style={{ color: "red" }} variant="h6" align="left">
 				{message.error}
 			</Typography>
 
-			<Typography style={{ color: "green" }} variant="h6" align="center">
+			<Typography style={{ color: "green" }} variant="h6" align="left">
 				{message.success}
 			</Typography>
 		</div>

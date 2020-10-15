@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const  ServiceList = ({user})=> {
+const ServiceList = ({ user }) => {
 	const classes = useStyles();
 	const [serviceState, setService] = React.useState([]);
 
@@ -43,26 +43,24 @@ const  ServiceList = ({user})=> {
 
 	return (
 		<div style={{ marginTop: "50px" }} className={classes.gridRoot}>
-			{serviceState.length?(
-			<Grid
-				container
-				spacing={1}
-				direction="row"
-				justify="center"
-				alignItems="center"
-			>
-				{serviceState.map((service, index) => (
-					<ServiceDataLoad data={service} key={index} />
-				))}
-			</Grid>
-			):( 
-        <Typography variant="h6">
-          You need to add items
-        </Typography>
-      )}
+			{serviceState.length ? (
+				<Grid
+					container
+					spacing={1}
+					direction="row"
+					justify="center"
+					alignItems="center"
+				>
+					{serviceState.map((service, index) => (
+						<ServiceDataLoad data={service} key={index} />
+					))}
+				</Grid>
+			) : (
+				<Typography variant="h6">You need to add items</Typography>
+			)}
 		</div>
 	);
-}
+};
 
 const mapStateToProps = (state) => {
 	return { user: state.user };

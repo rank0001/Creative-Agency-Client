@@ -10,7 +10,6 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-
 const useStyles = makeStyles((theme) => ({
 	root: {
 		maxWidth: 345,
@@ -18,31 +17,48 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ServiceDataLoad = ({ data }) => {
-	const classes = useStyles();
-    return (
-    
-		<Grid item xs={4} sm={4} lg={6} md={6} >
-			<Card className={classes.root}>
-				<CardHeader
-					avatar={
-						<Avatar aria-label="recipe" src={require(`../../../icons/${data.img}`)}>	
-						</Avatar>
-					}
-				/>
+	let color = "";
+	if (data.status == "ongoing") color = "yellow";
+	else if (data.status == "pending") color = "#FFE3E3";
+	else color = "#C6FFE0";
 
-				<Button variant="outlined" color="primary">
-					{data.status}
-				</Button>
+	const classes = useStyles();
+	return (
+		<Grid item xs={12} sm={12} lg={6} md={6}>
+			<Card className={classes.root}>
+				<Grid container spacing={4}>
+					<Grid item xs sm>
+						<CardHeader
+							avatar={
+								<Avatar
+									aria-label="recipe"
+									src={require(`../../../icons/${data.img}`)}
+								></Avatar>
+							}
+						></CardHeader>
+					</Grid>
+					<Grid item xs sm>
+						<Button
+							variant="outlined"
+							color="primary"
+							style={{ background: `${color}`, marginTop: "10px" }}
+						>
+							{data.status}
+						</Button>
+					</Grid>
+				</Grid>
 
 				<CardContent>
-					<Typography variant="h6">{data.service}</Typography>
+					<Typography variant="h6" style={{ fontWeight: "600" }}>
+						{data.service}
+					</Typography>
 					<Typography variant="body2" color="textSecondary" component="p">
 						{data.details}
 					</Typography>
 				</CardContent>
 			</Card>
 		</Grid>
-	)
+	);
 };
 
 export default ServiceDataLoad;
