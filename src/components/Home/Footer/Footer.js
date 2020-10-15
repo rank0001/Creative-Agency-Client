@@ -13,22 +13,13 @@ const useStyles = makeStyles((theme) => ({
 			margin: theme.spacing(1),
 			width: "50ch",
 		},
-	
-		
 	},
 	text: {
-		 	width:'630px',
-			[theme.breakpoints.down("xs")]: {
-			
-			width:'450px'
-		},
-			[theme.breakpoints.down("sm")]: {
-			
-			width:'430px'
-		},
-			[theme.breakpoints.down("md")]: {
-			
-			width:'520px'
+		width: "630px",
+		minWidth: "100px",
+
+		[theme.breakpoints.down("md")]: {
+			width: "420px",
 		},
 	},
 }));
