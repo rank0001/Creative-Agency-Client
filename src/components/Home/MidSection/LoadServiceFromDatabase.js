@@ -21,10 +21,8 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-//const color = ["#FBC02D", "#E64A19", "#009688", "#303F9F"];
+const LoadServiceFromDatabase = ({ data, ind, user }) => {
 
-const LoadServiceFromDatabase = ({ data, user }) => {
-	//const position = color[Math.floor(Math.random() * Math.floor(4))]
 	const history = useHistory();
 	const handleEventClick = (data) => {
 		if (!user.isSignedIn) {
@@ -47,19 +45,34 @@ const LoadServiceFromDatabase = ({ data, user }) => {
 	return (
 		<Grid
 			item
-			xs={4}
-			sm={4}
+			xs={12}
+			sm={6}
+			lg={4}
+			md={4}
 			align="center"
 			className={classes.animation}
 			onClick={() => handleEventClick(data)}
 			style={{ cursor: "pointer" }}
 		>
-			<img
-				src={require(`../../../icons/${data.img}`)}
-				style={{ width: "74px", height: "74px" }}
-			/>
-			<Typography variant="h5">{data.title}</Typography>
-			<Typography variant="h6">{data.description}</Typography>
+			{ind === 1 || (ind - 1) % 3 === 0 ? (
+				<Card className={classes.root}>
+					<img
+						src={require(`../../../icons/${data.img}`)}
+						style={{ width: "74px", height: "74px" }}
+					/>
+					<Typography variant="h5">{data.title}</Typography>
+					<Typography variant="h6">{data.description}</Typography>
+				</Card>
+			) : (
+				<div>
+					<img
+						src={require(`../../../icons/${data.img}`)}
+						style={{ width: "74px", height: "74px" }}
+					/>
+					<Typography variant="h5">{data.title}</Typography>
+					<Typography variant="h6">{data.description}</Typography>
+				</div>
+			)}
 		</Grid>
 	);
 };

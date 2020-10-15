@@ -22,24 +22,24 @@ export default function TopSection() {
 				justify="center"
 				alignItems="center"
 			>
-				<Grid item xs={5} sm={5}>
-					<Typography variant="h4">
+				<Grid item xs={12} sm={5}>
+					<Typography variant="h4" style={{fontSize:'48px',lineHeight:'60px',fontWeight:'700'}}>
 						Lets Grow Your <br /> Brand to the <br /> Next Level
 					</Typography>
-					<Typography variant="h6">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. <br />
-						Ratione, atque. Ab possimus alias debitis eum nulla hic <br />{" "}
+					<Typography variant="body2" style={{marginTop:'30px',fontSize:'16px',lineHeight:'24px',fontWeight:400}} >
+						Lorem ipsum dolor sit amet consectetur <br /> adipisicing elit. 
+						Ratione, atque. Ab possimus <br /> alias  debitis eum nulla hic <br />{" "}
 						magnam maxime tempora fugiat
 					</Typography>
 					<Button
-						style={{ background: "black", color: "white" }}
+						style={{ background: "black", color: "white",marginTop:'20px',width:'170px',height:'45px' }}
 						variant="contained"
 					>
-						Default
+						Hire us
 					</Button>
 				</Grid>
 
-				<Grid item xs={5} sm={5} style={{ marginRight: "5px" }}>
+				<Grid item xs={12} sm={5} style={{ marginRight: "5px" }}>
 					<img
 						src={frame}
 						alt="image"

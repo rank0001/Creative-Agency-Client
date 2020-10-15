@@ -32,6 +32,8 @@ export default function Service() {
 	const classes = useStyles();
 
 	const [serviceState, setService] = React.useState([]);
+    
+	const [count, setCount] = React.useState(0);
 
 	React.useEffect(() => {
 		fetch("http://localhost:5000/users")
@@ -40,7 +42,11 @@ export default function Service() {
 				setService(data);
 		
 			});
-	}, []);
+	}, [count]);
+
+    const stateUpdate = ()=>{
+        setCount(count=>count+1);
+    }
 
 	return (
 		<div style={{ marginTop: "50px" }} className={classes.gridRoot}>
@@ -54,7 +60,7 @@ export default function Service() {
 				>
 					<Grid item lg={12} md={12} sm={12} xs={12}>
 						
-							<LoadService data={serviceState} />
+							<LoadService data={serviceState} click={stateUpdate} />
 					
 					</Grid>
 				</Grid>

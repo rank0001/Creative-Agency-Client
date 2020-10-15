@@ -6,7 +6,7 @@ import Services from "./Services";
 
 export default function MidSection() {
 	return (
-		<div style={{ marginTop: "100px" }}>
+		<div style={{ marginTop: "140px" }}>
 			<Logos />
 			<Services />
 			<CarouselPart />

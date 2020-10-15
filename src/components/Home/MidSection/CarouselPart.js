@@ -19,32 +19,36 @@ export default function CarouselPart() {
 		autoplay: true,
 		autoplaySpeed: 1500,
 		pauseOnHover: true,
-		appendDots: (dots) => (
-			<div
-				style={{
-					background: "#111430",
-					//padding: "10px",
-					color: "red",
-					width: "102%",
-					marginLeft: "-70px",
-				}}
-			>
-				<ul style={{ margin: "0px" }}> {dots} </ul>
-			</div>
-		),
+
+     responsive: [
+        
+        {
+          breakpoint: 1000,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            initialSlide: 2,
+			padding: "40px"
+          }
+        },
+        
+      ]
+
 	};
 
 	return (
-		<div style={{ background: "#111430", marginTop: "20px" }}>
+		<div style={{ background: "#111430", marginTop: "90px" }}>
 			<Typography
 				variant="h4"
 				align="center"
 				style={{ color: "white", padding: "30px" }}
 			>
-				Here are some of <span style={{ color: "#82B763" }}></span> Our Works
+				Here are some of <span style={{ color: "#82B763" }}>
+					Our Works
+				</span> 
 			</Typography>
 
-			<Slider {...settings} style={{ padding: "40px" }}>
+			<Slider {...settings} style={{ padding: "40px"}}>
 				<div>
 					<img
 						src={carousel1}

@@ -10,6 +10,7 @@ export default function Header() {
 				transform: "skew(0deg,-7deg)",
 				marginTop: "-200px",
 				padding: "200px 0",
+				width:'100%'
 			}}
 		>
 			<div style={{ transform: "skew(0deg,7deg)" }}>

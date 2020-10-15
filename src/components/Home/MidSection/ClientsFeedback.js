@@ -22,19 +22,15 @@ import pic3 from "../../../customerPic/customer-3.png";
 import LoadClientFeedback from "./LoadClientFeedback";
 
 const useStyles = makeStyles((theme) => ({
-	
-
 	gridRoot: {
 		flexGrow: 1,
 	},
-	
 }));
 
 export default function ClientsFeedback() {
 	const classes = useStyles();
 
-
-const [feedbackState, setFeedback] = React.useState([]);
+	const [feedbackState, setFeedback] = React.useState([]);
 
 	React.useEffect(() => {
 		fetch("http://localhost:5000/feedback")
@@ -44,13 +40,10 @@ const [feedbackState, setFeedback] = React.useState([]);
 			});
 	}, []);
 
-
-
-
 	return (
-		<div style={{ marginTop: "50px" }} className={classes.gridRoot}>
+		<div style={{ marginTop: "70px" }} className={classes.gridRoot}>
 			<Typography variant="h4" align="center">
-				Clients Feedback
+				Clients <span style={{ color: "#82B763" }}>Feedback</span>
 			</Typography>
 			<Grid
 				container
@@ -58,10 +51,10 @@ const [feedbackState, setFeedback] = React.useState([]);
 				direction="row"
 				justify="center"
 				alignItems="center"
-				
+				style={{ marginTop: "40px",marginLeft:'40px'}}
 			>
-					{feedbackState.map((feedback,index) => (
-					<LoadClientFeedback data={feedback} key={index}/>
+				{feedbackState.map((feedback, index) => (
+					<LoadClientFeedback data={feedback} key={index} />
 				))}
 			</Grid>
 		</div>

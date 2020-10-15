@@ -21,8 +21,9 @@ export default function Logos() {
 				direction="row"
 				justify="center"
 				alignItems="center"
+				
 			>
-				<Grid item xs={4} sm={4} lg={2} md={2}>
+				<Grid item xs={6} sm={4} lg={2} md={2}>
 					<img
 						src={slack}
 						alt="image"
@@ -30,7 +31,7 @@ export default function Logos() {
 					/>
 				</Grid>
 
-				<Grid item xs={4} sm={4} lg={2} md={2}>
+				<Grid item xs={6} sm={4} lg={2} md={2}>
 					<img
 						src={google}
 						alt="image"
@@ -38,7 +39,7 @@ export default function Logos() {
 					/>
 				</Grid>
 
-				<Grid item xs={4} sm={4} lg={2} md={2}>
+				<Grid item xs={6} sm={4} lg={2} md={2}>
 					<img
 						src={uber}
 						alt="image"
@@ -46,7 +47,7 @@ export default function Logos() {
 					/>
 				</Grid>
 
-				<Grid item xs={4} sm={4} lg={2} md={2}>
+				<Grid item xs={6} sm={4} lg={2} md={2}>
 					<img
 						src={netflix}
 						alt="image"
@@ -54,7 +55,7 @@ export default function Logos() {
 					/>
 				</Grid>
 
-				<Grid item xs={4} sm={4} lg={2} md={2}>
+				<Grid item xs={6} sm={4} lg={2} md={2}>
 					<img
 						src={airbnb}
 						alt="image"

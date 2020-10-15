@@ -32,7 +32,7 @@ function createData(name, calories, fat, carbs, protein) {
 	return { name, calories, fat, carbs, protein };
 }
 
-export default function LoadService({ data }) {
+export default function LoadService({ data,click }) {
 	const classes = useStyles();
 
 	const [age, setAge] = React.useState(3);
@@ -54,7 +54,7 @@ export default function LoadService({ data }) {
 			fetch(`http://localhost:5000/updateStatus/${data._id}`, requestOptions).then(
 				(response) => {
 					
-					setAge(Math.random()*3);
+					click();
 				}
 			);
 		

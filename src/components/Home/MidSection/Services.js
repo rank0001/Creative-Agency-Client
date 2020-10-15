@@ -32,8 +32,8 @@ export default function Services() {
 	}, []);
 
 	return (
-		<div className={classes.root} style={{ marginTop: "20px" }} >
-			<Typography variant="h4" align="center" style={{ marginBottom: "20px" }}>
+		<div className={classes.root} style={{ marginTop: "90px" }} >
+			<Typography variant="h4" align="center" style={{ marginBottom: "60px" }}>
 				Provide Awesome <span style={{ color: "#82B763" }}>Services</span>
 			</Typography>
 			<Grid
@@ -42,10 +42,11 @@ export default function Services() {
 				direction="row"
 				justify="center"
 				alignItems="center"
+			
 			> 
 			
 				{serviceState.map((service,index) => (
-					<LoadServiceFromDatabase data={service} key={index} />
+					<LoadServiceFromDatabase data={service} ind={index} key={index} />
 				))}
 				
 			</Grid>
