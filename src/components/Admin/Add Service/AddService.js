@@ -1,13 +1,8 @@
 import React, { useState } from "react";
-import Link from "@material-ui/core/Link";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
-//import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import { connect } from "react-redux";
-
 import { Typography, Button, TextField } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -47,8 +42,6 @@ const AddService = ({ user }) => {
 	});
 
 	const handleSubmit = (e) => {
-		//history.push('/');
-		console.log(userInfo);
 		e.preventDefault();
 		if (userInfo.title && userInfo.description) {
 			const newMessage = { ...message };
@@ -62,7 +55,6 @@ const AddService = ({ user }) => {
 				(response) => {
 					newMessage.success = "successfully submitted";
 					setMessage(newMessage);
-					//history.push("/");
 				}
 			);
 		} else {

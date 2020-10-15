@@ -20,20 +20,17 @@ export default function CarouselPart() {
 		autoplaySpeed: 1500,
 		pauseOnHover: true,
 
-     responsive: [
-        
-        {
-          breakpoint: 1000,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            initialSlide: 2,
-			padding: "40px"
-          }
-        },
-        
-      ]
-
+		responsive: [
+			{
+				breakpoint: 1000,
+				settings: {
+					slidesToShow: 1,
+					slidesToScroll: 1,
+					initialSlide: 2,
+					padding: "40px",
+				},
+			},
+		],
 	};
 
 	return (
@@ -43,12 +40,10 @@ export default function CarouselPart() {
 				align="center"
 				style={{ color: "white", padding: "30px" }}
 			>
-				Here are some of <span style={{ color: "#82B763" }}>
-					Our Works
-				</span> 
+				Here are some of <span style={{ color: "#82B763" }}>Our Works</span>
 			</Typography>
 
-			<Slider {...settings} style={{ padding: "40px"}}>
+			<Slider {...settings} style={{ padding: "40px" }}>
 				<div>
 					<img
 						src={carousel1}

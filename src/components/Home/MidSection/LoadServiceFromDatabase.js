@@ -1,5 +1,5 @@
 import React from "react";
-import { CardMedia, Typography, Grid, Card } from "@material-ui/core";
+import { Typography, Grid, Card } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const LoadServiceFromDatabase = ({ data, ind, user }) => {
-
 	const history = useHistory();
 	const handleEventClick = (data) => {
 		if (!user.isSignedIn) {

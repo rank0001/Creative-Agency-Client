@@ -3,10 +3,6 @@ import Home from "./components/Home/Home";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Login from "./components/Login/Login";
 import Customer from "./components/Customer/Customer";
-import Order from "./components/Customer/Order/Order";
-import Services from "./components/Customer/Service List/ServiceList";
-import ServiceList from "./components/Customer/Service List/ServiceList";
-import Review from "./components/Customer/Review/Review";
 import Admin from "./components/Admin/Admin";
 import NoRoute from "./components/404Page/NoRoute";
 

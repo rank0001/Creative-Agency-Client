@@ -5,14 +5,10 @@ import Review from "./Review/Review";
 import Sidebar from "./Sidebar/Sidebar";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import { Typography, Button, Avatar } from "@material-ui/core";
+import { Typography, Avatar } from "@material-ui/core";
 import ServiceList from "./Service List/ServiceList";
-import Home from "../Home/Home";
-import test from '../../logos/logo.png';
 import { connect } from "react-redux";
-import NoRoute from "../404Page/NoRoute";
 import RouteError from "./RouteError";
-
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -20,16 +16,12 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const Customer = ({user}) =>  {
+const Customer = ({ user }) => {
 	const classes = useStyles();
 	return (
-		<div >
+		<div>
 			<BrowserRouter>
-				<Grid
-					className={classes.root}
-					container
-					style={{ marginTop: "10px" }}
-				>
+				<Grid className={classes.root} container style={{ marginTop: "10px" }}>
 					<Grid
 						item
 						lg={2}
@@ -38,7 +30,6 @@ const Customer = ({user}) =>  {
 						xs={9}
 						style={{
 							marginLeft: "20px",
-						
 						}}
 					>
 						<Sidebar />
@@ -51,24 +42,25 @@ const Customer = ({user}) =>  {
 							md={6}
 							sm={12}
 							xs={12}
-							justify='center'
+							justify="center"
 							style={{
 								marginLeft: "50px",
-								
+
 								marginTop: "20px",
 							}}
 						>
-
-                        <Typography >
-						<Avatar style={{display:'inline-block',}}   src={user.photo}>	
-						</Avatar> Logged in as {user.name} </Typography>
-							<div >
+							<Typography>
+								<Avatar
+									style={{ display: "inline-block" }}
+									src={user.photo}
+								></Avatar>{" "}
+								Logged in as {user.name}{" "}
+							</Typography>
+							<div>
 								<Route path="/customer/order" component={Order} />
 								<Route path="/customer/review" component={Review} />
 								<Route path="/customer/service" component={ServiceList} />
 								<Route path="/error" component={RouteError} />
-								
-                                
 							</div>
 						</Grid>
 					</Switch>
@@ -76,7 +68,7 @@ const Customer = ({user}) =>  {
 			</BrowserRouter>
 		</div>
 	);
-}
+};
 const mapStateToProps = (state) => {
 	return { user: state.user };
 };

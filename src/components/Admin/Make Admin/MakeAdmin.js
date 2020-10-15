@@ -1,10 +1,6 @@
 import React, { useState } from "react";
-import Link from "@material-ui/core/Link";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import { connect } from "react-redux";
 
 import { Typography, Button, TextField } from "@material-ui/core";
@@ -31,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 const MakeAdmin = ({ user }) => {
 	const history = useHistory();
 	if (!user.isSignedIn) history.push("/admin/error");
-    
+
 	const [userInfo, setUser] = useState({
 		email: "",
 	});
@@ -42,8 +38,6 @@ const MakeAdmin = ({ user }) => {
 	});
 
 	const handleSubmit = (e) => {
-		//history.push('/');
-		console.log(userInfo);
 		e.preventDefault();
 		if (userInfo.email) {
 			const newMessage = { ...message };
@@ -57,7 +51,6 @@ const MakeAdmin = ({ user }) => {
 				(response) => {
 					newMessage.success = "successfully submitted";
 					setMessage(newMessage);
-					//history.push("/");
 				}
 			);
 		} else {

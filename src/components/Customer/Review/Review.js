@@ -1,11 +1,7 @@
 import React, { useState } from "react";
-import Link from "@material-ui/core/Link";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
-import CloudUploadIcon from "@material-ui/icons/CloudUpload";
-import {connect} from 'react-redux';
+import { connect } from "react-redux";
 
 import { Typography, Button, TextField } from "@material-ui/core";
 
@@ -24,10 +20,9 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const Review = ({user})=> {
+const Review = ({ user }) => {
 	const history = useHistory();
-	if(!user.isSignedIn)
-		history.push('/error');
+	if (!user.isSignedIn) history.push("/error");
 	const [userInfo, setUser] = useState({
 		name: "",
 		designation: "",
@@ -41,8 +36,6 @@ const Review = ({user})=> {
 	});
 
 	const handleSubmit = (e) => {
-		//history.push('/');
-		console.log(userInfo);
 		e.preventDefault();
 		if (userInfo.name && userInfo.designation && userInfo.description) {
 			const newMessage = { ...message };
@@ -55,7 +48,6 @@ const Review = ({user})=> {
 			fetch("http://localhost:5000/review", requestOptions).then((response) => {
 				newMessage.success = "successfully submitted";
 				setMessage(newMessage);
-				//history.push("/");
 			});
 		} else {
 			const newMessage = { ...message };
@@ -141,7 +133,7 @@ const Review = ({user})=> {
 			</Typography>
 		</div>
 	);
-}
+};
 const mapStateToProps = (state) => {
 	return { user: state.user };
 };

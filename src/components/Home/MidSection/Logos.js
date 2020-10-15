@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography, Grid } from "@material-ui/core";
+import {  Grid } from "@material-ui/core";
 import google from "../../../logos/google.png";
 import slack from "../../../logos/slack.png";
 import netflix from "../../../logos/netflix.png";
@@ -21,7 +21,6 @@ export default function Logos() {
 				direction="row"
 				justify="center"
 				alignItems="center"
-				
 			>
 				<Grid item xs={6} sm={4} lg={2} md={2}>
 					<img

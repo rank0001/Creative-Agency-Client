@@ -1,10 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Grid } from "@material-ui/core";
-import service1 from "../../../icons/service1.png";
-import service2 from "../../../icons/service2.png";
-import service3 from "../../../icons/service3.png";
-import LinearProgress from "@material-ui/core/LinearProgress";
 import LoadServiceFromDatabase from "./LoadServiceFromDatabase";
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -32,7 +28,7 @@ export default function Services() {
 	}, []);
 
 	return (
-		<div className={classes.root} style={{ marginTop: "90px" }} >
+		<div className={classes.root} style={{ marginTop: "90px" }}>
 			<Typography variant="h4" align="center" style={{ marginBottom: "60px" }}>
 				Provide Awesome <span style={{ color: "#82B763" }}>Services</span>
 			</Typography>
@@ -42,13 +38,10 @@ export default function Services() {
 				direction="row"
 				justify="center"
 				alignItems="center"
-			
-			> 
-			
-				{serviceState.map((service,index) => (
+			>
+				{serviceState.map((service, index) => (
 					<LoadServiceFromDatabase data={service} ind={index} key={index} />
 				))}
-				
 			</Grid>
 		</div>
 	);

@@ -27,21 +27,18 @@ const useStyles = makeStyles((theme) => ({
 	},
 	text: {
 		[theme.breakpoints.down("sm")]: {
-			//width:'321px',
 			marginRight: "80px",
 		},
 	},
 }));
 
 const Login = (props) => {
-	//console.log(props.user);
 	const [admin, setAdmin] = React.useState([]);
 
 	React.useEffect(() => {
 		fetch("http://localhost:5000/admin")
 			.then((response) => response.json())
 			.then((data) => {
-				//console.log(data);
 				setAdmin(data);
 			});
 	}, []);
@@ -53,7 +50,6 @@ const Login = (props) => {
 	let data = null;
 	if (props.location.state) {
 		data = props.location.state.data;
-		console.log(data);
 	}
 
 	const history = useHistory();
@@ -81,10 +77,8 @@ const Login = (props) => {
 				};
 
 				let obj = admin.some((admin) => {
-					//console.log(admin.email,result.user.email)
 					return admin.email == result.user.email;
 				});
-				//console.log(obj);
 				if (obj) history.push("/admin/service");
 				else if (props.location.state) history.push(location);
 				else history.push("/customer/order");

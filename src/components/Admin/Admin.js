@@ -1,16 +1,13 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import { Typography, Button,Avatar} from "@material-ui/core";
+import { Typography, Avatar } from "@material-ui/core";
 import Sidenav from "./SideNav/Sidenav";
 import Service from "./Services/Service";
 import MakeAdmin from "./Make Admin/MakeAdmin";
 import AddService from "./Add Service/AddService";
 import { connect } from "react-redux";
-import NoRoute from "../404Page/NoRoute";
-import RouteError from "./Error";
 import Error from "./Error";
 
 const useStyles = makeStyles((theme) => ({
@@ -36,7 +33,6 @@ const Admin = ({ user }) => {
 						md={2}
 						sm={9}
 						xs={9}
-						
 						style={{
 							marginLeft: "20px",
 						}}
@@ -56,15 +52,18 @@ const Admin = ({ user }) => {
 								marginTop: "20px",
 							}}
 						>
-						 <Typography >
-						<Avatar style={{display:'inline-block',}}   src={user.photo}>	
-						</Avatar> Logged in as {user.name} </Typography>
-							<div >
+							<Typography>
+								<Avatar
+									style={{ display: "inline-block" }}
+									src={user.photo}
+								></Avatar>{" "}
+								Logged in as {user.name}{" "}
+							</Typography>
+							<div>
 								<Route path="/admin/service" component={Service} />
 								<Route path="/admin/addAdmin" component={MakeAdmin} />
 								<Route path="/admin/addService" component={AddService} />
 								<Route path="/admin/error" component={Error} />
-								
 							</div>
 						</Grid>
 					</Switch>
