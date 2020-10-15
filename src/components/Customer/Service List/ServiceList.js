@@ -21,14 +21,21 @@ import pic2 from "../../../customerPic/customer-2.png";
 import pic3 from "../../../customerPic/customer-3.png";
 import ServiceDataLoad from "./ServiceDataLoad";
 import { connect } from "react-redux";
+import LinearProgress from "@material-ui/core/LinearProgress";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
 	gridRoot: {
 		flexGrow: 1,
 	},
+	
 }));
 
 const ServiceList = ({ user }) => {
+	const history = useHistory();
+	if(!user.isSignedIn){
+		history.push('/error');
+	}
 	const classes = useStyles();
 	const [serviceState, setService] = React.useState([]);
 

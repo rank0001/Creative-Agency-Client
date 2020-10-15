@@ -8,6 +8,7 @@ import Services from "./components/Customer/Service List/ServiceList";
 import ServiceList from "./components/Customer/Service List/ServiceList";
 import Review from "./components/Customer/Review/Review";
 import Admin from "./components/Admin/Admin";
+import NoRoute from "./components/404Page/NoRoute";
 
 function App() {
 	return (
@@ -22,6 +23,7 @@ function App() {
 					<Route exact path="/admin/service" component={Admin} />
 					<Route exact path="/admin/addAdmin" component={Admin} />
 					<Route exact path="/admin/addService" component={Admin} />
+					<Route path="*" component={NoRoute} />
 				</Switch>
 			</BrowserRouter>
 		</div>

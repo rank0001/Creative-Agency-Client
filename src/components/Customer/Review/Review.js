@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+import {connect} from 'react-redux';
 
 import { Typography, Button, TextField } from "@material-ui/core";
 
@@ -23,8 +24,10 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function Review() {
+const Review = ({user})=> {
 	const history = useHistory();
+	if(!user.isSignedIn)
+		history.push('/error');
 	const [userInfo, setUser] = useState({
 		name: "",
 		designation: "",
@@ -139,3 +142,7 @@ export default function Review() {
 		</div>
 	);
 }
+const mapStateToProps = (state) => {
+	return { user: state.user };
+};
+export default connect(mapStateToProps)(Review);

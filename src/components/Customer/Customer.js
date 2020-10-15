@@ -10,6 +10,8 @@ import ServiceList from "./Service List/ServiceList";
 import Home from "../Home/Home";
 import test from '../../logos/logo.png';
 import { connect } from "react-redux";
+import NoRoute from "../404Page/NoRoute";
+import RouteError from "./RouteError";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -64,6 +66,8 @@ const Customer = ({user}) =>  {
 								<Route path="/customer/order" component={Order} />
 								<Route path="/customer/review" component={Review} />
 								<Route path="/customer/service" component={ServiceList} />
+								<Route path="/error" component={RouteError} />
+								
                                 
 							</div>
 						</Grid>

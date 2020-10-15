@@ -15,24 +15,34 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import { Grid } from "@material-ui/core";
+import { Grid, LinearProgress } from "@material-ui/core";
 import pic1 from "../../../customerPic/customer-1.png";
 import pic2 from "../../../customerPic/customer-2.png";
 import pic3 from "../../../customerPic/customer-3.png";
 //import ServiceDataLoad from "./ServiceDataLoad";
 import LoadService from "./LoadService";
+import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
 	gridRoot: {
 		flexGrow: 1,
 	},
+	loader: {
+		width: "100%",
+		"& > * + *": {
+			marginTop: theme.spacing(2),
+		},
+	},
 }));
 
-export default function Service() {
+const Service = ({ user }) => {
 	const classes = useStyles();
+	const history = useHistory();
+	if (!user.isSignedIn) history.push("/admin/error");
 
 	const [serviceState, setService] = React.useState([]);
-    
+
 	const [count, setCount] = React.useState(0);
 
 	React.useEffect(() => {
@@ -40,13 +50,12 @@ export default function Service() {
 			.then((response) => response.json())
 			.then((data) => {
 				setService(data);
-		
 			});
 	}, [count]);
 
-    const stateUpdate = ()=>{
-        setCount(count=>count+1);
-    }
+	const stateUpdate = () => {
+		setCount((count) => count + 1);
+	};
 
 	return (
 		<div style={{ marginTop: "50px" }} className={classes.gridRoot}>
@@ -57,17 +66,22 @@ export default function Service() {
 					direction="row"
 					justify="center"
 					alignItems="center"
-                    
 				>
-					<Grid item lg={12} md={12} sm={9} xs={9} >
-						
-							<LoadService data={serviceState} click={stateUpdate} />
-					
+					<Grid item lg={12} md={12} sm={9} xs={9}>
+						<LoadService data={serviceState} click={stateUpdate} />
 					</Grid>
 				</Grid>
 			) : (
-				<Typography variant="h6">You need to add items</Typography>
+				<div className={classes.loader}>
+					<LinearProgress />
+					<LinearProgress color="secondary" />
+				</div>
 			)}
 		</div>
 	);
-}
+};
+
+const mapStateToProps = (state) => {
+	return { user: state.user };
+};
+export default connect(mapStateToProps)(Service);

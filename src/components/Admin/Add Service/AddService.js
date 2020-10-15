@@ -6,6 +6,7 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 //import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+import { connect } from "react-redux";
 
 import { Typography, Button, TextField } from "@material-ui/core";
 
@@ -24,15 +25,16 @@ const useStyles = makeStyles((theme) => ({
 	},
 
 	btn: {
-		marginTop:'40px',
+		marginTop: "40px",
 		[theme.breakpoints.down("md")]: {
 			marginTop: "70px",
 		},
 	},
 }));
 
-export default function AddService() {
-	//const history = useHistory();
+const AddService = ({ user }) => {
+	const history = useHistory();
+	if (!user.isSignedIn) history.push("/admin/error");
 	const [userInfo, setUser] = useState({
 		title: "",
 		description: "",
@@ -136,7 +138,6 @@ export default function AddService() {
 						color: "white",
 						width: "208px",
 						height: "37px",
-						
 					}}
 					className={classes.btn}
 					variant="contained"
@@ -145,13 +146,25 @@ export default function AddService() {
 					Submit
 				</Button>
 			</form>
-			<Typography style={{ color: "red" }} variant="h6" align="left">
+			<Typography
+				style={{ color: "red", marginTop: "40px" }}
+				variant="h6"
+				align="left"
+			>
 				{message.error}
 			</Typography>
 
-			<Typography style={{ color: "green" }} variant="h6" align="left">
+			<Typography
+				style={{ color: "green", marginTop: "40px" }}
+				variant="h6"
+				align="left"
+			>
 				{message.success}
 			</Typography>
 		</div>
 	);
-}
+};
+const mapStateToProps = (state) => {
+	return { user: state.user };
+};
+export default connect(mapStateToProps)(AddService);

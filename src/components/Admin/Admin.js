@@ -9,6 +9,9 @@ import Service from "./Services/Service";
 import MakeAdmin from "./Make Admin/MakeAdmin";
 import AddService from "./Add Service/AddService";
 import { connect } from "react-redux";
+import NoRoute from "../404Page/NoRoute";
+import RouteError from "./Error";
+import Error from "./Error";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -60,6 +63,8 @@ const Admin = ({ user }) => {
 								<Route path="/admin/service" component={Service} />
 								<Route path="/admin/addAdmin" component={MakeAdmin} />
 								<Route path="/admin/addService" component={AddService} />
+								<Route path="/admin/error" component={Error} />
+								
 							</div>
 						</Grid>
 					</Switch>

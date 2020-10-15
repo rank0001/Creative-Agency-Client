@@ -18,13 +18,14 @@ const useStyles = makeStyles((theme) => ({
 	},
 	links: {
 		[theme.breakpoints.down("sm")]: {
-			width:'350px'
+			width: "350px",
 		},
 	},
 }));
 
 const Order = ({ location, user }) => {
 	const history = useHistory();
+	if (!user.isSignedIn) history.push("/error");
 	const [userInfo, setUser] = useState({
 		name: user.name,
 		email: user.email,
@@ -119,7 +120,7 @@ const Order = ({ location, user }) => {
 					placeholder="enter email"
 					variant="outlined"
 					className={classes.links}
-					style={{  background: "whitesmoke" }}
+					style={{ background: "whitesmoke" }}
 				/>
 
 				<br />
@@ -160,7 +161,11 @@ const Order = ({ location, user }) => {
 					placeholder="enter price"
 					variant="outlined"
 					className={classes.links}
-					style={{ background: "whitesmoke", width: "284px", marginTop: "50px" }}
+					style={{
+						background: "whitesmoke",
+						width: "284px",
+						marginTop: "50px",
+					}}
 				/>
 
 				<Button
