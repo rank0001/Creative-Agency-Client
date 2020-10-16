@@ -45,17 +45,27 @@ const Customer = ({ user }) => {
 							justify="center"
 							style={{
 								marginLeft: "50px",
-
 								marginTop: "20px",
 							}}
 						>
-							<Typography>
-								<Avatar
-									style={{ display: "inline-block" }}
-									src={user.photo}
-								></Avatar>{" "}
-								Logged in as {user.name}{" "}
-							</Typography>
+							<Grid
+								container
+								direction="row"
+								justify="center"
+								align="center"
+								alignItems="center"
+							>
+								<Grid item xs sm>
+									<Typography>
+										<Avatar
+											style={{ display: "inline-block" }}
+											src={user.photo}
+										></Avatar>{" "}
+										{user.name}
+									</Typography>
+								</Grid>
+							</Grid>
+
 							<div>
 								<Route path="/customer/order" component={Order} />
 								<Route path="/customer/review" component={Review} />

@@ -45,7 +45,10 @@ const Review = ({ user }) => {
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(userInfo),
 			};
-			fetch("https://safe-lake-59354.herokuapp.com/review", requestOptions).then((response) => {
+			fetch(
+				"https://safe-lake-59354.herokuapp.com/review",
+				requestOptions
+			).then((response) => {
 				newMessage.success = "successfully submitted";
 				setMessage(newMessage);
 			});
@@ -66,6 +69,9 @@ const Review = ({ user }) => {
 	const classes = useStyles();
 	return (
 		<div>
+			<Typography variant="h5" style={{ fontWeight: "500" }}>
+				Review
+			</Typography>
 			<form
 				className={classes.root}
 				noValidate

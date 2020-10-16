@@ -28,8 +28,6 @@ const useStyles = makeStyles((theme) => ({
 export default function LoadService({ data, click }) {
 	const classes = useStyles();
 
-	const [age, setAge] = React.useState(3);
-
 	const handleChange = (data, event) => {
 		const newStatus = event.target.value;
 		const value = {
@@ -57,7 +55,7 @@ export default function LoadService({ data, click }) {
 						<TableCell>Name</TableCell>
 						<TableCell align="center">Email Id</TableCell>
 						<TableCell align="right">Service&nbsp;</TableCell>
-						<TableCell align="right">Project Details&nbsp;</TableCell>
+						<TableCell align="center">Project Details&nbsp;</TableCell>
 						<TableCell align="right">Status&nbsp;</TableCell>
 					</TableRow>
 				</TableHead>
@@ -69,23 +67,45 @@ export default function LoadService({ data, click }) {
 							</TableCell>
 							<TableCell align="right">{data.email}</TableCell>
 							<TableCell align="right">{data.service}</TableCell>
-							<TableCell align="right">{data.details}</TableCell>
+							<TableCell
+								align="center"
+								style={{
+									maxWidth: "150px",
+									overflowWrap: "break-word",
+								}}
+							>
+								{data.details}
+							</TableCell>
 							<TableCell align="right">
 								<FormControl className={classes.formControl}>
 									<InputLabel id="demo-simple-select-label">Status</InputLabel>
-									<Select
-										labelId="demo-simple-select-label"
-										id="demo-simple-select"
-										value={data.status}
-										label="Status"
-										onChange={(e) => handleChange(data, e)}
-									>
-									
-
-										<MenuItem value="ongoing">Ongoing</MenuItem>
-										<MenuItem value="pending">Pending</MenuItem>
-										<MenuItem value="done">Done</MenuItem>
-									</Select>
+									{data.status == "done" ? (
+										<Select
+											labelId="demo-simple-select-label"
+											id="demo-simple-select"
+											value={data.status}
+											style={{ color: "green" }}
+											label="Status"
+											onChange={(e) => handleChange(data, e)}
+										>
+											<MenuItem value="ongoing">Ongoing</MenuItem>
+											<MenuItem value="pending">Pending</MenuItem>
+											<MenuItem value="done">Done</MenuItem>
+										</Select>
+									) : (
+										<Select
+											labelId="demo-simple-select-label"
+											id="demo-simple-select"
+											value={data.status}
+											style={{ color: "red" }}
+											label="Status"
+											onChange={(e) => handleChange(data, e)}
+										>
+											<MenuItem value="ongoing">Ongoing</MenuItem>
+											<MenuItem value="pending">Pending</MenuItem>
+											<MenuItem value="done">Done</MenuItem>
+										</Select>
+									)}
 								</FormControl>
 							</TableCell>
 						</TableRow>

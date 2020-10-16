@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid, LinearProgress } from "@material-ui/core";
+import { Grid, LinearProgress, Typography } from "@material-ui/core";
 import LoadService from "./LoadService";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -40,6 +40,9 @@ const Service = ({ user }) => {
 
 	return (
 		<div style={{ marginTop: "50px" }} className={classes.gridRoot}>
+			<Typography variant="h5" style={{ fontWeight: "500" }}>
+				Services
+			</Typography>
 			{serviceState.length ? (
 				<Grid
 					container

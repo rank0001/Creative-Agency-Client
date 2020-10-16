@@ -52,12 +52,12 @@ const Admin = ({ user }) => {
 								marginTop: "20px",
 							}}
 						>
-							<Typography>
+							<Typography align="center">
 								<Avatar
 									style={{ display: "inline-block" }}
 									src={user.photo}
 								></Avatar>{" "}
-								Logged in as {user.name}{" "}
+								{user.name}{" "}
 							</Typography>
 							<div>
 								<Route path="/admin/service" component={Service} />

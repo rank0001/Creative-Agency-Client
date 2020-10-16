@@ -14,9 +14,8 @@ const useStyles = makeStyles((theme) => ({
 
 const ServiceList = ({ user }) => {
 	const history = useHistory();
-	if (!user.isSignedIn) {
-		history.push("/error");
-	}
+	if (!user.isSignedIn) history.push("/error");
+
 	const classes = useStyles();
 	const [serviceState, setService] = React.useState([]);
 
@@ -30,6 +29,9 @@ const ServiceList = ({ user }) => {
 
 	return (
 		<div style={{ marginTop: "50px" }} className={classes.gridRoot}>
+			<Typography variant="h5" style={{ fontWeight: "500" }}>
+				Service List
+			</Typography>
 			{serviceState.length ? (
 				<Grid
 					container

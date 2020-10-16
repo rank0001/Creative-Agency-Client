@@ -74,11 +74,13 @@ const Order = ({ location, user }) => {
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(userInfo),
 			};
-			fetch("https://safe-lake-59354.herokuapp.com/users", requestOptions).then((response) => {
-				newMessage.success = "successfully submitted";
-				setMessage(newMessage);
-				history.push("/customer/service");
-			});
+			fetch("https://safe-lake-59354.herokuapp.com/users", requestOptions).then(
+				(response) => {
+					newMessage.success = "successfully submitted";
+					setMessage(newMessage);
+					history.push("/customer/service");
+				}
+			);
 		} else {
 			const newMessage = { ...message };
 			newMessage.error = "You must fill all the credentials";
@@ -88,6 +90,9 @@ const Order = ({ location, user }) => {
 
 	return (
 		<div>
+			<Typography variant="h5" style={{ fontWeight: "500" }}>
+				Order
+			</Typography>
 			<form
 				className={classes.root}
 				noValidate

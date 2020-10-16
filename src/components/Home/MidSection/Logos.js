@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {  Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import google from "../../../logos/google.png";
 import slack from "../../../logos/slack.png";
 import netflix from "../../../logos/netflix.png";

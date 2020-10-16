@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 const AddService = ({ user }) => {
 	const history = useHistory();
-	//if (!user.isSignedIn) history.push("/admin/error");
+	if (!user.isSignedIn) history.push("/admin/error");
 	const [userInfo, setUser] = useState({
 		title: "",
 		description: "",
@@ -40,7 +40,6 @@ const AddService = ({ user }) => {
 	const handleFileChange = (e) => {
 		setMessage({ error: "", success: "" });
 		const newFile = e.target.files[0];
-		console.log(newFile);
 		setFile(newFile);
 	};
 
@@ -54,18 +53,6 @@ const AddService = ({ user }) => {
 		if (userInfo.title && userInfo.description && file) {
 			const newMessage = { ...message };
 
-			// const requestOptions = {
-			// 	method: "POST",
-			// 	headers: { "Content-Type": "application/json" },
-			// 	body: JSON.stringify(userInfo),
-			// };
-			// fetch("https://safe-lake-59354.herokuapp.com/addService", requestOptions).then(
-			// 	(response) => {
-			// 		newMessage.success = "successfully submitted";
-			// 		setMessage(newMessage);
-			// 	}
-			// );
-
 			const formData = new FormData();
 			formData.append("file", file);
 			formData.append("title", userInfo.title);
@@ -77,7 +64,8 @@ const AddService = ({ user }) => {
 			})
 				.then((response) => response.json())
 				.then((data) => {
-					console.log(data);
+					newMessage.success = "successfully submitted";
+					setMessage(newMessage);
 				});
 		} else {
 			const newMessage = { ...message };
@@ -96,6 +84,9 @@ const AddService = ({ user }) => {
 	const classes = useStyles();
 	return (
 		<div>
+			<Typography variant="h5" style={{ fontWeight: "500" }}>
+				Add Service
+			</Typography>
 			<form
 				className={classes.root}
 				noValidate

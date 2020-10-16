@@ -41,18 +41,18 @@ const MakeAdmin = ({ user }) => {
 		e.preventDefault();
 		if (userInfo.email) {
 			const newMessage = { ...message };
-
 			const requestOptions = {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(userInfo),
 			};
-			fetch("https://safe-lake-59354.herokuapp.com/addAdmin", requestOptions).then(
-				(response) => {
-					newMessage.success = "successfully submitted";
-					setMessage(newMessage);
-				}
-			);
+			fetch(
+				"https://safe-lake-59354.herokuapp.com/addAdmin",
+				requestOptions
+			).then((response) => {
+				newMessage.success = "successfully submitted";
+				setMessage(newMessage);
+			});
 		} else {
 			const newMessage = { ...message };
 			newMessage.error = "You must fill all the credentials";

@@ -36,7 +36,7 @@ const Login = (props) => {
 	const [admin, setAdmin] = React.useState([]);
 
 	React.useEffect(() => {
-		fetch("http://localhost:5000/admin")
+		fetch("https://safe-lake-59354.herokuapp.com/admin")
 			.then((response) => response.json())
 			.then((data) => {
 				setAdmin(data);
@@ -59,7 +59,6 @@ const Login = (props) => {
 			.auth()
 			.signInWithPopup(provider)
 			.then((result) => {
-				console.log(result, result.user.photoURL);
 				const { displayName } = result.user;
 				const { photoURL } = result.user;
 				const signedInUser = {
