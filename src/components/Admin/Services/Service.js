@@ -27,7 +27,7 @@ const Service = ({ user }) => {
 	const [count, setCount] = React.useState(0);
 
 	React.useEffect(() => {
-		fetch("http://localhost:5000/users")
+		fetch("https://safe-lake-59354.herokuapp.com/users")
 			.then((response) => response.json())
 			.then((data) => {
 				setService(data);

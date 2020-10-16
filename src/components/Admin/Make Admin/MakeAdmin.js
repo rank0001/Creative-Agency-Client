@@ -47,7 +47,7 @@ const MakeAdmin = ({ user }) => {
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(userInfo),
 			};
-			fetch("http://localhost:5000/addAdmin", requestOptions).then(
+			fetch("https://safe-lake-59354.herokuapp.com/addAdmin", requestOptions).then(
 				(response) => {
 					newMessage.success = "successfully submitted";
 					setMessage(newMessage);

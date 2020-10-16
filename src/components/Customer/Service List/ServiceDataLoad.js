@@ -31,7 +31,7 @@ const ServiceDataLoad = ({ data }) => {
 						<CardHeader
 							avatar={
 								<Avatar
-									aria-label="recipe"
+									
 									src={require(`../../../icons/${data.img}`)}
 								></Avatar>
 							}

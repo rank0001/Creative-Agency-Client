@@ -42,7 +42,7 @@ export default function LoadService({ data, click }) {
 			body: JSON.stringify(value),
 		};
 		fetch(
-			`http://localhost:5000/updateStatus/${data._id}`,
+			`https://safe-lake-59354.herokuapp.com/updateStatus/${data._id}`,
 			requestOptions
 		).then((response) => {
 			click();
@@ -80,9 +80,7 @@ export default function LoadService({ data, click }) {
 										label="Status"
 										onChange={(e) => handleChange(data, e)}
 									>
-										<MenuItem value="">
-											<em>None</em>
-										</MenuItem>
+									
 
 										<MenuItem value="ongoing">Ongoing</MenuItem>
 										<MenuItem value="pending">Pending</MenuItem>

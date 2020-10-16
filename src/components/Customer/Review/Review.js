@@ -45,7 +45,7 @@ const Review = ({ user }) => {
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(userInfo),
 			};
-			fetch("http://localhost:5000/review", requestOptions).then((response) => {
+			fetch("https://safe-lake-59354.herokuapp.com/review", requestOptions).then((response) => {
 				newMessage.success = "successfully submitted";
 				setMessage(newMessage);
 			});

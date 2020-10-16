@@ -21,7 +21,7 @@ const ServiceList = ({ user }) => {
 	const [serviceState, setService] = React.useState([]);
 
 	React.useEffect(() => {
-		fetch("http://localhost:5000/user?email=" + user.email)
+		fetch("https://safe-lake-59354.herokuapp.com/user?email=" + user.email)
 			.then((response) => response.json())
 			.then((data) => {
 				setService(data);

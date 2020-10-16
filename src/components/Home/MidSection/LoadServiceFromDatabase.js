@@ -55,21 +55,67 @@ const LoadServiceFromDatabase = ({ data, ind, user }) => {
 		>
 			{ind === 1 || (ind - 1) % 3 === 0 ? (
 				<Card className={classes.root}>
-					<img
-						src={require(`../../../icons/${data.img}`)}
-						style={{ width: "74px", height: "74px" }}
-					/>
-					<Typography variant="h5">{data.title}</Typography>
-					<Typography variant="h6">{data.description}</Typography>
+					{data.image ? (
+						<div>
+							<img
+								src={`data:image/png;base64,${data.image.img}`}
+								style={{ width: "74px", height: "74px" }}
+							/>
+
+							<Typography variant="h5" style={{ fontWeight: "600" }}>
+								{data.title}
+							</Typography>
+							<Typography variant="h6" style={{ fontWeight: "300" }}>
+								{data.description}
+							</Typography>
+						</div>
+					) : (
+						<div>
+							<img
+								src={require(`../../../icons/${data.img}`)}
+								style={{ width: "74px", height: "74px" }}
+							/>
+
+							<Typography variant="h5" style={{ fontWeight: "600" }}>
+								{data.title}
+							</Typography>
+							<Typography variant="h6" style={{ fontWeight: "300" }}>
+								{data.description}
+							</Typography>
+						</div>
+					)}
 				</Card>
 			) : (
 				<div>
-					<img
-						src={require(`../../../icons/${data.img}`)}
-						style={{ width: "74px", height: "74px" }}
-					/>
-					<Typography variant="h5">{data.title}</Typography>
-					<Typography variant="h6">{data.description}</Typography>
+					{data.image ? (
+						<div>
+							<img
+								src={`data:image/png;base64,${data.image.img}`}
+								style={{ width: "74px", height: "74px" }}
+							/>
+
+							<Typography variant="h5" style={{ fontWeight: "600" }}>
+								{data.title}
+							</Typography>
+							<Typography variant="h6" style={{ fontWeight: "300" }}>
+								{data.description}
+							</Typography>
+						</div>
+					) : (
+						<div>
+							<img
+								src={require(`../../../icons/${data.img}`)}
+								style={{ width: "74px", height: "74px" }}
+							/>
+
+							<Typography variant="h5" style={{ fontWeight: "600" }}>
+								{data.title}
+							</Typography>
+							<Typography variant="h6" style={{ fontWeight: "300" }}>
+								{data.description}
+							</Typography>
+						</div>
+					)}
 				</div>
 			)}
 		</Grid>

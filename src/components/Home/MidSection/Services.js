@@ -20,7 +20,7 @@ export default function Services() {
 	const [serviceState, setService] = React.useState([]);
 
 	React.useEffect(() => {
-		fetch("http://localhost:5000/")
+		fetch("https://safe-lake-59354.herokuapp.com/")
 			.then((response) => response.json())
 			.then((data) => {
 				setService(data);

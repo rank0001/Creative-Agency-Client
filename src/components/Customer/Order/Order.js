@@ -74,7 +74,7 @@ const Order = ({ location, user }) => {
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(userInfo),
 			};
-			fetch("http://localhost:5000/users", requestOptions).then((response) => {
+			fetch("https://safe-lake-59354.herokuapp.com/users", requestOptions).then((response) => {
 				newMessage.success = "successfully submitted";
 				setMessage(newMessage);
 				history.push("/customer/service");

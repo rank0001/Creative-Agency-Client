@@ -17,7 +17,7 @@ export default function ClientsFeedback() {
 	const [feedbackState, setFeedback] = React.useState([]);
 
 	React.useEffect(() => {
-		fetch("http://localhost:5000/feedback")
+		fetch("https://safe-lake-59354.herokuapp.com/feedback")
 			.then((response) => response.json())
 			.then((data) => {
 				setFeedback(data);

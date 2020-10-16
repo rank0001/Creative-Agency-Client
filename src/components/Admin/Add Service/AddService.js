@@ -29,12 +29,20 @@ const useStyles = makeStyles((theme) => ({
 
 const AddService = ({ user }) => {
 	const history = useHistory();
-	if (!user.isSignedIn) history.push("/admin/error");
+	//if (!user.isSignedIn) history.push("/admin/error");
 	const [userInfo, setUser] = useState({
 		title: "",
 		description: "",
 		img: "service5.png",
 	});
+
+	const [file, setFile] = useState(null);
+	const handleFileChange = (e) => {
+		setMessage({ error: "", success: "" });
+		const newFile = e.target.files[0];
+		console.log(newFile);
+		setFile(newFile);
+	};
 
 	const [message, setMessage] = useState({
 		error: "",
@@ -43,20 +51,34 @@ const AddService = ({ user }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (userInfo.title && userInfo.description) {
+		if (userInfo.title && userInfo.description && file) {
 			const newMessage = { ...message };
 
-			const requestOptions = {
+			// const requestOptions = {
+			// 	method: "POST",
+			// 	headers: { "Content-Type": "application/json" },
+			// 	body: JSON.stringify(userInfo),
+			// };
+			// fetch("https://safe-lake-59354.herokuapp.com/addService", requestOptions).then(
+			// 	(response) => {
+			// 		newMessage.success = "successfully submitted";
+			// 		setMessage(newMessage);
+			// 	}
+			// );
+
+			const formData = new FormData();
+			formData.append("file", file);
+			formData.append("title", userInfo.title);
+			formData.append("description", userInfo.description);
+
+			fetch("https://safe-lake-59354.herokuapp.com/addService", {
 				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(userInfo),
-			};
-			fetch("http://localhost:5000/addService", requestOptions).then(
-				(response) => {
-					newMessage.success = "successfully submitted";
-					setMessage(newMessage);
-				}
-			);
+				body: formData,
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					console.log(data);
+				});
 		} else {
 			const newMessage = { ...message };
 			newMessage.error = "You must fill all the credentials";
@@ -97,6 +119,7 @@ const AddService = ({ user }) => {
 					id="raised-button-file"
 					multiple
 					type="file"
+					onChange={handleFileChange}
 				/>
 				<label htmlFor="raised-button-file">
 					<Button
