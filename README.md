@@ -8,6 +8,7 @@ Environment:  Reactjs, Mongodb, Redux, Firebase, ExpressJS, Javascript, NodeJS, 
 *	Admin can update the state of the invoice
 *	Users can provide feedbacks.
 *	Separate dashboard for user and admin.
+
 * A slider with various past projects have been added to the home page
 * Users can see their invidual services they had selected before upon login
 
